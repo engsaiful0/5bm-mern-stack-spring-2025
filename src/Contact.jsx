@@ -5,6 +5,7 @@ function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const inputRef = useRef(null);
   const theme = useContext(ThemeContext);
+  const flag = useRef(false);
 
   useEffect(() => {
     // Focus on the name input when the component mounts
@@ -23,8 +24,9 @@ function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert('Form submitted successfully!');
+    //alert('Form submitted successfully!');
     console.log(formData);
+    //post API
     setFormData({ name: '', email: '', message: '' });
   };
 
@@ -65,7 +67,17 @@ function Contact() {
             required
           ></textarea>
         </div>
-        <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">Submit</button>
+        <div className="mb-3">
+          <label htmlFor="message" className="block mb-1">Address</label>
+          <textarea
+            name="address"
+            value={formData.address}
+            onChange={handleChange}
+           className='form-control'
+            required
+          ></textarea>
+        </div>
+        <button type="submit" className="btn btn-success">Submit</button>
       </form>
     </div>
   );

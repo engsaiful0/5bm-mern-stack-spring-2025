@@ -9,7 +9,7 @@ import FramerMotion from './FramerMotion';
 import TiltCard from './TiltCard';
 import MarqueeExample from './MarqueeExample';
 import ChartExample from './ChartExample';
-import { auth } from "./firebase-config";
+
 import Login from "./Login";
 import Register from "./Register";
 import Logout from "./Logout";
@@ -19,28 +19,11 @@ function App() {
   const [count, setCount] = useState(0);
   const [user, setUser] = useState(null);
 
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((currUser) => {
-      setUser(currUser);
-    });
-    return () => unsubscribe();
-  }, []);
+
   return (
     <Router>
       <ThemeContext.Provider value="light">
-        <div>
-          {user ? (
-            <>
-              <h2>Welcome {user.email}</h2>
-              <Logout />
-            </>
-          ) : (
-            <>
-              <Login />
-              <Register />
-            </>
-          )}
-        </div>
+       
         <div>
           <nav>
             <Link to="/">Home</Link> | <Link to="/about-component">About</Link>| <Link to="/contact">Contact</Link>
