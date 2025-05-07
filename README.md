@@ -32,3 +32,7 @@ npm list tailwindcss
 
 
 npm install react-reveal
+
+#npm install firebase
+
+npm install firebase react-router-dom

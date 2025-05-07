@@ -1,6 +1,6 @@
-// src/Login.js
+// src/Login.jsx
 import React, { useState } from "react";
-// import { auth } from "./firebase-config";
+import { auth } from "../firebase-config";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
 function Login() {
@@ -20,8 +20,8 @@ function Login() {
   return (
     <form onSubmit={login}>
       <h2>Login</h2>
-      <input type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
-      <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+      <input type="email" placeholder="Email" required onChange={(e) => setEmail(e.target.value)} />
+      <input type="password" placeholder="Password" required onChange={(e) => setPassword(e.target.value)} />
       <button type="submit">Login</button>
     </form>
   );
