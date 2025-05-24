@@ -6,6 +6,7 @@ import { auth } from '../firebase-config';
 
 import Register from './Register';
 import Login from './Login';
+import Contact from './Contact';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -27,7 +28,7 @@ function App() {
     <Router>
       <div>
         <nav>
-          <Link to="/">Home</Link> | <Link to="/register">Register</Link> | <Link to="/login">Login</Link>
+          <Link to="/">Home</Link> | <Link to="/register">Register</Link> | <Link to="/login">Login</Link>| <Link to="/contact">Contact</Link>
         </nav>
 
         <Routes>
@@ -49,6 +50,7 @@ function App() {
           />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/contact" element={<Contact />} />
         </Routes>
       </div>
     </Router>

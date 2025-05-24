@@ -2,18 +2,21 @@ import React, { useState, useEffect, useRef, useContext } from 'react';
 import ThemeContext from './ThemeContext';
 
 function Contact() {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: '',
+    address: ''
+  });
+
   const inputRef = useRef(null);
   const theme = useContext(ThemeContext);
-  const flag = useRef(false);
 
   useEffect(() => {
-    // Focus on the name input when the component mounts
     inputRef.current.focus();
   }, []);
 
   useEffect(() => {
-    // Log form data whenever it changes
     console.log('Form Data Updated:', formData);
   }, [formData]);
 
@@ -22,12 +25,30 @@ function Contact() {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    //alert('Form submitted successfully!');
-    console.log(formData);
-    //post API
-    setFormData({ name: '', email: '', message: '' });
+
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/contact`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+      console.log('Server Response:', result);
+      alert('Form submitted successfully!');
+
+      setFormData({
+        name: '',
+        email: '',
+        message: '',
+        address: ''
+      });
+    } catch (error) {
+      console.error('Submission Error:', error);
+      alert('Failed to submit form. Please try again.');
+    }
   };
 
   return (
@@ -68,12 +89,12 @@ function Contact() {
           ></textarea>
         </div>
         <div className="mb-3">
-          <label htmlFor="message" className="block mb-1">Address</label>
+          <label htmlFor="address" className="block mb-1">Address:</label>
           <textarea
             name="address"
             value={formData.address}
             onChange={handleChange}
-           className='form-control'
+            className="w-full px-3 py-2 border rounded"
             required
           ></textarea>
         </div>
