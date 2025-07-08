@@ -8,6 +8,7 @@ import Register from './Register';
 import Login from './Login';
 import Contact from './Contact';
 import ViewContact from './ViewContact';
+import Ecommerce from './Ecommerce';
 
 
 function App() {
@@ -31,7 +32,7 @@ function App() {
       <div>
         <nav>
           <Link to="/">Home</Link> | <Link to="/register">Register</Link> | <Link to="/login">Login</Link>| <Link to="/contact">Contact</Link>
-          | <Link to="/viewContact">ViewContact</Link>
+          | <Link to="/viewContact">ViewContact</Link>| <Link to="/Ecommerce">Ecommerce</Link>
         </nav>
 
         <Routes>
@@ -55,6 +56,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/viewContact" element={<ViewContact />} />
+          <Route path="/Ecommerce" element={<Ecommerce />} />
         </Routes>
       </div>
     </Router>
